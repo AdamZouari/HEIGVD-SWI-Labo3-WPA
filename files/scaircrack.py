@@ -79,7 +79,10 @@ for passphrase in dico:
     
     # remove the ICV [:-8] and check if it's the same if yes print the passphrase 
     if mic.hexdigest()[:-8] == mic_to_test:
-        print "The passphrase is : ", passphrase 
+        print "The passphrase is '", passphrase, "'"
         break
+    else:
+        print "The passphrase is NOT '", passphrase, "'"
+
 
 
