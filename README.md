@@ -36,9 +36,14 @@ Dans cette première partie, vous allez récupérer le script Python [wpa_key_de
 - Ouvrir le fichier de capture [wpa_key_derivation.py](https://github.com/arubinst/HEIGVD-SWI-Labo3-WPA/blob/master/files/) avec Wireshark
 - Exécuter le script avec ```python wpa_key_derivation.py```
 - Essayer d’identifier les valeurs affichées par le script dans la capture Wireshark
+    
+    On peut voir dans la capture le SSID (Beacon et Association Request). Les addresses MAC de l'AP et du client dans quasi toutes les trames. L'AP Nonce peut être récupéré dans la trame 1 et 3 du 4-way handshake, tandis que le Client Nonce peut être récupéré dans la trame 2. Le MIC affiché dans le script correspond à celui de la trame 4 du 4-way handshake en plus de la séquence "fdb0abaa" à la fin. Les trames 2 et 3 du 4-way handshake contiennent un autre MIC. Les autres informations fourni par le script nous ne les trouvont pas dans Wireshark (sont en effet calculées par le script).
+    
 - Analyser le fonctionnement du script. En particulier, __faire attention__ à la variable ```data``` qui contient la payload de la trame et la comparer aux données de la quatrième trame du 4-way handshake. Lire [la fin de ce document] pour l’explication de la différence.
-- __Modifier le script__ pour qu’il récupère automatiquement, à partir de la capture, les valeurs qui se trouvent actuellement codées en dur (```ssid```, ```APmac```, ```Clientmac```, nonces…) 
 
+- __Modifier le script__ pour qu’il récupère automatiquement, à partir de la capture, les valeurs qui se trouvent actuellement codées en dur (```ssid```, ```APmac```, ```Clientmac```, nonces…)
+    
+    Script modifié et fonctionnel
 
 ### 2. Scaircrack (aircrack basé sur Scapy)
 
@@ -55,6 +60,10 @@ Utilisant le script [wpa_key_derivation.py](https://github.com/arubinst/HEIGVD-S
    - Identiques &rarr; La passphrase utilisée est correcte
    - Différents &rarr; Essayer avec une nouvelle passphrase
 
+
+Capture d’écran de notre script en action :
+
+![](scaircrack-running.png)
 
 ### 3. Scairodump (Bonus)
 
